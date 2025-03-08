@@ -17,7 +17,7 @@ var sendPipeCmd = &cobra.Command{
 	Long:    `Envoi d'un Mobitag à un numéro de téléphone depuis un pipe.`,
 	Example: `<sortie d'une commande> | mobitag sendPipe --to <destinataire> --from <expéditeur>
 pwd | mobitag sp --to 123456 --from 654321
-whoami | mobitag sp -t 123456 -f 654321`,
+echo "Hello c'est $(whoami) : alors on se le fait ce café ?" | mobitag sp -t 123456 -f 654321`,
 	PreRunE: func(cmd *cobra.Command, args []string) error {
 		if os.Getenv("OPTNC_MOBITAGNC_API_KEY") == "" {
 			log.Fatalf("❗ La clé API 'OPTNC_MOBITAGNC_API_KEY' n'est pas définie dans les variables d'environnement.")

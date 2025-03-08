@@ -32,7 +32,57 @@ mobitag send --to xxxxxx --message "Hello World : a mobit@g from Go(lang) XD"
 mobitag send --to xxxxxx --message "Hello World : a mobit@g from Go(lang) XD" --from yyyyyy
 ```
 
-## 🦥 Autocomplétion
+# 🤓 Cool oneliners
+
+Depuis le terminal, les oneliners sont super cools : en une commande concise exécutée en une seule ligne dans un terminal ou un script
+cela permet d’accomplir des tâches rapidement et efficacement, sans avoir à écrire un programme complet.
+
+## Gestion du `pipe` avec la commande `sendPipe`
+
+> "Hey I don't have to do anything here except glue together things that somebody else did 
+for me already" - Brian Kernighan ([see short](https://youtube.com/clip/UgkxtOCaReaRRQCOu5Oo5rrOgCwb56JoX7Gw?si=cJ1TTdKZbArizMmt))
+
+
+```sh
+# Exemple avec la commande `whoami`
+echo "Hello c'est $(whoami) : alors on se le fait ce café ?" |\
+    mobitag sendPipe --to $DIDI_MOBILE
+```
+
+## ㊙️ Envoyer un fichier ou des secrets avec `privatebin`
+
+[`privatebin`](https://privatebin.info/) est...
+
+> a minimalist, open source online pastebin where the server has zero knowledge of pasted data.
+
+On va ici l'utiliser pour envoyer des fichiers directement par `sms` depuis le terminal.
+
+1. Disposer d'une instance à soi ou en choisir une sur [privatebin.info/directory/](https://privatebin.info/directory/)
+2. Créer le [fichier de conf](https://github.com/gearnode/privatebin/blob/master/doc/privatebin.conf.5.md#examples) `~/.config/privatebin/config.json`
+3. Télécharger et installer [`gearnode/privatebin`](https://github.com/gearnode/privatebin)
+4. Profiter
+
+### 🐮 Un petit coup de `cowsay`
+
+Avec [`cowsay`](https://cowsay.diamonds/):
+
+```sh
+cowsay -f tux "Mobitag c'est VACHEMENT cool...surtout depuis le terminal et pipé avec privatebin"\
+    | privatebin create\
+    | mobitag sendPipe --to $MOBILIS_DEST
+```
+
+### 🔐 Communiquer un fichier de secrets
+
+```sh
+cat secrets.txt\
+    | privatebin create\
+    | mobitag sendPipe --to $MOBILIS_DEST
+```
+
+
+
+# 🦥 Autocomplétion
 
 Pour une UX optimale dans le terminal, il est possible d'activer l'autocomplétion :
 
